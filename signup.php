@@ -23,28 +23,28 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
-		      	<form action="https://preview.colorlib.com/theme/bootstrap/login-form-20/#" class="signin-form">
+		      	<form action="register_user.php" method="post" class="signin-form">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="Nome" required="">
+		      			<input type="text" name="name" class="form-control" placeholder="Nome" required="">
 		      		</div>
 					<div class="form-group">
-						<input type="email" class="form-control" placeholder="Email" required="">
+						<input type="email" name="email" class="form-control" placeholder="Email" required="">
 					</div>
 	            <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Password" required="">
+	              <input id="password-field" name="password_1" type="password" class="form-control" placeholder="Password" required="">
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 				<div class="form-group">
-					<input id="password-field" type="password" class="form-control" placeholder="Insira novamente" required="">
+					<input id="password-field" name="password_2" type="password" class="form-control" placeholder="Insira novamente" required="">
 					<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 				</div>
 	            <div class="form-group">
-	            	<button type="submit" class="form-control btn btn-primary submit px-3">Cadastro</button>
+	            	<button type="submit" name="btn_register" class="form-control btn btn-primary submit px-3">Cadastro</button>
 	            </div>
 	          </form>
 	          <p class="w-100 text-center">— Ja tem uma conta? —</p>
 	          <div class="social d-flex text-center">
-	          	<a href="Login 10.html" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Login</a>
+	          	<a href="Login 10.php" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Login</a>
 	          </div>
 		      </div>
 				</div>
