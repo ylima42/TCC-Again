@@ -23,8 +23,8 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
-		      	<form class="signin-form">
-		      		<div class="form-group">
+					<form class="signin-form" method="POST" action="process_login.php">
+					<div class="form-group">
 		      			<input type="email" name="email" class="form-control" placeholder="Email" required="">
 		      		</div>
 	            <div class="form-group">

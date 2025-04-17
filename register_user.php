@@ -1,31 +1,38 @@
 <?php
-    include_once "connetion.php";
+include_once "connetion.php";
 
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $password = $_POST["password_1"];
-    $senha = md5($password);
-    $tipo = "user";
+$name = trim($_POST["name"]);
+$email = trim($_POST["email"]);
+$password = $_POST["password_1"];
+$tipo = "user";
 
-    // Verifica se o e-mail já existe
-    $check_email = "SELECT * FROM users WHERE email = '$email'";
-    $result = mysqli_query($conexao, $check_email);
+// Hash da senha com segurança
+$senha = password_hash($password, PASSWORD_DEFAULT);
 
-    if (mysqli_num_rows($result) > 0) {
-        echo "<script>
-                alert('Já existe este email na base de dados!');
-                window.location.href = 'register.php';
-              </script>";
+// Verifica se o e-mail já existe
+$stmt = $conexao->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    echo "<script>
+            alert('Já existe este email na base de dados!');
+            window.location.href = 'register.php';
+          </script>";
+} else {
+    $stmt = $conexao->prepare("INSERT INTO users (nome, email, senha, tipo) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $email, $senha, $tipo);
+
+    if ($stmt->execute()) {
+        header("Location: login 10.php");
+        exit();
     } else {
-        $sql = "INSERT INTO users (nome, email, senha, tipo) VALUES ('$name', '$email', '$senha', '$tipo')";
-
-        if (mysqli_query($conexao, $sql)) {
-            header("Location: login 10.php");
-        } else {
-            echo "Erro ao cadastrar: " . mysqli_error($conexao);
-        }
+        echo "Erro ao cadastrar: " . $stmt->error;
     }
+}
 ?>
+
 
 linkar a tela de login com a base de dados 
 fazer verificacoes, se o email que esta a entrar o seu tipo for admin ele loga e reenvia ele paa a tela de admin.php  
