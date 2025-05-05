@@ -1,8 +1,25 @@
+<?php 
+      include 'connetion.php';
+      session_start();
+      $admin_id = $_SESSION['admin_name'];
+      
+      if (!isset($adm_id )) {
+        header('location:Login.php');
+      }
+      if (!isset($_POST['logout'])) {
+        session_destroy();
+        header('location.Login.php');
+      }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+
   <title>Painel Admin</title>
   <style>
     body {
@@ -114,28 +131,29 @@ nav {
 }
   </style>
 </head>
-<body>
-
   <body>
-    <div class="top-bar">
-        <div class="admin-label">Administrador</div>
-        <nav>
-          <a href="produt.html" class="nav-link">Atualizar produto
-          </a>
+    <header class="header">
+      <div class="flex">
+        <a href="page.php" class="img/logo.jpg"></a>
+          <nav class="navbar">
+            <a href="page.php">Inicio</a>       
+          <a href="produt.html" class="nav-link">Atualizar produtos</a>
+          <a href=""></a>
           <a href="add_item.html" class="nav-link">Adicionar produto</a>
         </nav>
         <button class="logout-btn">Sair</button>
       </div>
-    
+        </header>
 
-  <div class="card-container " style="padding: 15px">
-    <div class="card">Admini</div>
-    <div class="card">Admini</div>
-    <div class="card">Admini</div>
-    <div class="card">Admini</div>
-    <div class="card">Admini</div>
-    <div class="card">Admini</div>
-  </div>
 
-</body>
+       <div class="card-container " style="padding: 15px">
+        <div class="card">Admini</div>
+       <div class="card">Admini</div>
+       <div class="card">Admini</div>
+        <div class="card">Admini</div>
+      <div class="card">Admini</div>
+        <div class="card">Admini</div>
+     </div>
+
+  </body>
 </html>

@@ -14,15 +14,14 @@
 		$filter_cpassword = filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING);
 		$cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
 
-		$select_user = mysqli_query($conn, "SELECT * FROM 'users' WHERE email = '$email'") or die ('query failed');
-
+		$select_user = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'") or die ('query failed');
 		if (mysqli_num_rows($select_user) > 0) {
 			$message[] = 'Este usuario ja existe';
 		} else {
 			if ($password != $cpassword) {
 				$message[] = 'Password errada';
 			}else {
-				mysqli_query($conn,"INSERT INTO 'users'('name', 'email', 'password') VALUES ('$name','$email','$password')") or die ('query failed');
+				mysqli_query($conn,"INSERT INTO users(name, email, password) VALUES ('$name','$email','$password')") or die ('query failed');				$message[] = 'Cadastrado com sucesso';
 				$message[] = 'Cadastrado com sucesso';
 				header('location:Login.php');
 			}

@@ -314,7 +314,6 @@
                   <li><a href="index.html" class="dropdown-item">Contact </a></li>
                   <li><a href="index.html" class="dropdown-item">Thank You </a></li>
                   <li><a href="index.html" class="dropdown-item">My Account </a></li>
-                  <li><a href="index.html" class="dropdown-item">404 Error </a></li>
                 </ul>
               </li>
             </ul>

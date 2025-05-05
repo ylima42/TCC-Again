@@ -1,3 +1,40 @@
+<?php 
+	include 'connection.php';
+
+	if (isset($_POST['btn_register'])) {
+		$filter_name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+		$name = mysqli_real_escape_string($conn, $filter_name);
+		
+		$filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+		$email = mysqli_real_escape_string($conn, $filter_email);
+
+		$filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+		$password = mysqli_real_escape_string($conn, $filter_password);
+		
+		$filter_cpassword = filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING);
+		$cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
+
+		$select_user = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'") or die ('query failed');
+		if (mysqli_num_rows($select_user) > 0) {
+			$row = mysqli_fetch_array($select_user);
+			if ($row['user_type'] == 'admin'){
+						$_SESSION['admin_name'] = $row['name'];
+						$_SESSION['admin_email'] = $row['email'];
+						$_SESSION['admin_id'] = $row['id'];
+						header('location:page.php');
+			}else if ($row['user_type'] == 'user'){
+						$_SESSION['user_type'] = $row['name'];
+						$_SESSION['user_email'] = $row['email'];
+						$_SESSION['user_id'] = $row['id'];
+						header('location:index.php');
+			}else {
+				$message[] = 'Email ou senha incorreta';
+			}
+		}	
+		
+	}
+?>
+
 <!DOCTYPE html>
 <!-- saved from url=(0059)https://preview.colorlib.com/theme/bootstrap/login-form-20/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,11 +50,26 @@
 
 	</head>
 	<body class="img js-fullheight" style="background-image: url('./images/back_login.jpg'); height: 961px;">
+		<?php
+			if (isset($message)) {	
+				foreach ($message as $message) {
+					echo '	
+						<div class="message">
+							<span>'.$message.'</span>
+							<i class="bi bi-x-circle" onclick="this.parentElement.remove()"></i>
+						</div>
+						
+						';
+				}
+			}
+		?>
+	
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
 					<h2 class="heading-section">Login</h2>
+
 				</div>
 			</div>
 			<div class="row justify-content-center">
