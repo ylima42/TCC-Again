@@ -735,4 +735,21 @@ header .icons i:hover{
   #menu-btn{
     display: block;
   }
+  .header .flex .navbar{
+    position: absolute;
+    top: 149%;
+    display: block;
+    right: 0;
+    border-top: 1px solid #000;
+    background: #fff;
+    transition: .3s ease;
+    clip-path: ;
+  }
+  .header .flex .navbar.active{
+    clip-path: polygon(0 0,100% 0, 100% 100%, 0 100%);
+  }
+  .header .flex .navbar a{
+    display: block;
+    margin: 2rem;
+  }
 }
