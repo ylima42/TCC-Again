@@ -1,9 +1,14 @@
 <?php
+session_start(); // Iniciar sessão em todas as páginas de conexão
 
-$conn = mysqli_connect('localhost','root','','doces_db') or die ('falha na conexao');
-$host = 'localhost';     // ou 127.0.0.1
-$usuario = 'root';       // teu usuário MySQL
-$senha = '';             // tua senha do MySQL (deixa vazio se não tiver)
-$banco = 'ecommerce'; // nome do banco
+$host = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'doces_db';
 
+$conn = mysqli_connect($host, $usuario, $senha, $banco);
+
+if (!$conn) {
+    die("Falha na conexão com o banco de dados: " . mysqli_connect_error());
+}
 ?>
